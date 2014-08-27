@@ -1,0 +1,24 @@
+{
+    "name"             : "ephrin/axon",
+    "description"      : "follows",
+    "minimum-stability": "dev",
+    "license"          : "MIT",
+    "authors"          : [
+        {
+            "name" : "eprhin",
+            "email": "lazycommit@gmail.com"
+        }
+    ],
+
+    "require" : {
+        "symfony/yaml"      : "2.5.3",
+        "symfony/console"   : "2.5.3",
+        "symfony/process"   : "2.5.3",
+        "symfony/filesystem": "2.5.3",
+        "symfony/finder"    : "2.5.3",
+        "symfony/stopwatch" : "2.5.3"
+    },
+    "autoload": {
+        "psr-0": {"": "lib/"}
+    }
+}

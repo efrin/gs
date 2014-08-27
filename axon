@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+namespace {
+
+    use Ephrin\Axon;
+    use Symfony\Component\Console\Input\ArgvInput;
+    use Symfony\Component\Console\Input\InputArgument;
+    use Symfony\Component\Console\Input\InputDefinition;
+    use Symfony\Component\Console\Input\InputOption;
+    use Symfony\Component\Console\Output\ConsoleOutput;
+
+    require_once 'vendor/autoload.php';
+
+    global $argv;
+
+    $def = new InputDefinition();
+    $def->addArgument(new InputArgument('file', null, 'PHP File to execute'));
+    $def->addOption(new InputOption('help', 'h', InputOption::VALUE_NONE));
+
+//    $def->addOption(new InputOption('detach', 'd', InputOption::VALUE_NONE)); //todo pcntl extension ?
+
+    $input = new ArgvInput($argv, $def);
+
+    $output = new ConsoleOutput();
+
+    if($input->getOption('help')){
+        $output->writeln($def->getSynopsis());
+    } elseif($file = $input->getArgument('file')) {
+
+
+        $axon = new Axon($file, __DIR__, $output);
+
+        $axon->touch();
+
+
+
+    } else {
+        throw new \RuntimeException('shell is not supported. please provide a valid php file name');
+    }
+}
