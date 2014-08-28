@@ -28,7 +28,7 @@
             }
         }
 
-        $axon = new Ephrin\Axon($file, $output);
+        $axon = new Ephrin\Axon();
 
         function setTimeout(callable $fn, $delay){
             global $axon;

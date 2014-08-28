@@ -4,15 +4,17 @@
 namespace Ephrin;
 
 
-use Symfony\Component\Console\Output\OutputInterface;
-
 class Axon
 {
+    private $started = false;
 
 
-    function __construct()
+    function __construct($interactive = false)
     {
-        register_shutdown_function([$this, 'shutdown']);
+        if(!$interactive){
+            register_shutdown_function([$this, 'shutdown']);
+        }
+
     }
 
 
@@ -31,9 +33,21 @@ class Axon
 
     }
 
+    private function loop(){
+
+
+
+
+    }
+
     public function shutdown()
     {
-        echo '---shutdown---';
+        if(!$this->started){
+            $this->loop();
+        }
+
+
+        echo PHP_EOL . '---shutdown---' . PHP_EOL;
     }
 
     public function timeoutClear(TimeoutObject $object)
