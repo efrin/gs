@@ -15,7 +15,40 @@ namespace Ephrin;
  *
  * @author lazycommit <lazycommit@hotels24.ua>
  */
-class TimerObject 
+class TimerObject
 {
+    /** @var integer */
+    public $start;
+    /** @var callable */
+    public $onTimeout;
+    /** @var int */
+    public $delay;
+    /** @var bool */
+    public $repeat;
+
+    /** * @var TimerObject */
+    public $next;
+    /** * @var TimerObject */
+    public $prev;
+
+    /**
+     * @param callable $fn
+     * @param boolean $repeat
+     * @param integer $delay
+     * @param $args
+     */
+    function __construct(callable $fn, $repeat, $delay = 0, array $args = [])
+    {
+        $this->onTimeout = function () use ($fn, $args) {
+            return call_user_func_array($fn, $args);
+        };
+
+        $this->delay = $delay;
+        $this->created = Axon::now();
+        $this->start =  $this->created + $delay;
+
+        $this->repeat = $repeat;
+    }
+
 
 } 

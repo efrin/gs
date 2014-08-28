@@ -15,7 +15,12 @@ namespace Ephrin;
  *
  * @author lazycommit <lazycommit@hotels24.ua>
  */
-class TimeoutObject 
+class TimeoutObject extends TimerObject
 {
+    function __construct(callable $fn, $delay = 0, array $args = [])
+    {
+        parent::__construct($fn, false, $delay, $args);
+    }
+
 
 } 

@@ -18,4 +18,10 @@ namespace Ephrin;
 class ImmediateObject 
 {
 
+    function __construct(callable $fn, $args)
+    {
+        // TODO: Implement __construct() method.
+    }
+
+
 } 

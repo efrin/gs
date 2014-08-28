@@ -15,7 +15,10 @@ namespace Ephrin;
  *
  * @author lazycommit <lazycommit@hotels24.ua>
  */
-class IntervalObject 
+class IntervalObject extends TimerObject
 {
-
-} 
+    function __construct(callable $fn, $delay = 0, array $args = [])
+    {
+        parent::__construct($fn, true, $delay, $args);
+    }
+}
